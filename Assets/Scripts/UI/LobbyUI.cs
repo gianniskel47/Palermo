@@ -15,10 +15,20 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] GameObject lobbyUiPanel;
     [SerializeField] GameObject createGamePanel;
 
+    [Header("Broadcasters")]
+    [SerializeField] SO_Event modifyPlayerListEvent;
+    [SerializeField] SO_Event startGameEvent;
+
+
     private void Awake()
     {
         addPlayerButton.onClick.AddListener(() => AddPlayerToGame());
         backButton.onClick.AddListener(() => Back());
+        startGameButton.onClick.AddListener(() =>
+        {
+            startGameEvent.RaiseEvent();
+            startGameButton.interactable = false;
+        });
     }
 
     private void Start()
@@ -36,7 +46,10 @@ public class LobbyUI : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.AddPlayer(playerName);
+        // true is for adding player to the list
+        // player name is the name to be added for the player
+        // gamemanager.cs is listening to this
+        modifyPlayerListEvent.RaiseEvent(true, playerName);
 
         GameObject templateInstance = Instantiate(playerSingleTemplate, playerTemplatesContainer.transform);
 
@@ -52,7 +65,10 @@ public class LobbyUI : MonoBehaviour
     // the playerName is never null or empty
     public void AddFirstPlayer(string playerName)
     {
-        GameManager.Instance.AddPlayer(playerName);
+        // true is for adding player to the list
+        // player name is the name to be added for the player
+        // gamemanager.cs is listening to this
+        modifyPlayerListEvent.RaiseEvent(true, playerName);
 
         GameObject templateInstance = Instantiate(playerSingleTemplate, playerTemplatesContainer.transform);
 
@@ -64,7 +80,11 @@ public class LobbyUI : MonoBehaviour
 
     public void RemovePlayer(PlayerSingleTemplate playerTemplate)
     {
-        GameManager.Instance.RemovePlayer(playerTemplate.GetPlayerName());
+        // false is for removing player from the list
+        // player name is the name to be added for the player
+        // gamemanager.cs is listening to this
+        modifyPlayerListEvent.RaiseEvent(false, playerTemplate.GetPlayerName());
+
         Destroy(playerTemplate.gameObject);
 
         UpdatePlayerCountText();

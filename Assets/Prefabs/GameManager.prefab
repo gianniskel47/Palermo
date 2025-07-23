@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5989883299119692869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2552389035650714371}
+  - component: {fileID: 6330157141546762763}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2552389035650714371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989883299119692869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6330157141546762763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989883299119692869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c006c77f3b119ff4181ad8ed43022703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allRolesList:
+  - {fileID: 11400000, guid: 637a66e5af3c47a48bde3a6017406e03, type: 2}
+  - {fileID: 11400000, guid: 390d2c315cf05fa40a89204c09cd0d42, type: 2}
+  - {fileID: 11400000, guid: 6c0aa1178b276b24d90d1be620a3469f, type: 2}
+  - {fileID: 11400000, guid: 0f42cfd0b4546844ebbc231a0a5cee03, type: 2}
+  - {fileID: 11400000, guid: 2d2ff17e94acc6942bfec509e5ab81a0, type: 2}
+  - {fileID: 11400000, guid: f6600249ffa4d214eb57ca1b2a6ffd35, type: 2}
+  - {fileID: 11400000, guid: 50e747eaddc13974795cd4ca947e41a4, type: 2}
+  - {fileID: 11400000, guid: b86d09e82b70b4b4c9dc358f3ddfb78d, type: 2}
+  - {fileID: 11400000, guid: 00780603b7345c847a53c5db04f226da, type: 2}
+  - {fileID: 11400000, guid: 3f9287a757feddd40afdc2d2a736966e, type: 2}
+  - {fileID: 11400000, guid: 313a489ec8ace3b4795cd50a8b3dd5fe, type: 2}
+  - {fileID: 11400000, guid: 5b19cae56bd831d4e87a2ee60c04a413, type: 2}
+  - {fileID: 11400000, guid: 9000b34a0ec2c0b44b0266fc84cc22e8, type: 2}
+  - {fileID: 11400000, guid: d1760101713fe49498e83ba1171ae4b9, type: 2}
+  - {fileID: 11400000, guid: f3c83123e74e8b14c92a3c610adb5a57, type: 2}
+  - {fileID: 11400000, guid: 77a5db6527067d442ba74ca503e7afc3, type: 2}
+  - {fileID: 11400000, guid: ddf2f560d173b604d987e11106eaa88a, type: 2}
+  - {fileID: 11400000, guid: fcba25ad6a655c74d8ef1085d6f1b518, type: 2}
+  - {fileID: 11400000, guid: face82efbb65ed74987866c005c48dac, type: 2}
+  - {fileID: 11400000, guid: adce139c2f496b84b85640ff9bce795b, type: 2}
+  defaultRolesList:
+  - {fileID: 11400000, guid: f6600249ffa4d214eb57ca1b2a6ffd35, type: 2}
+  - {fileID: 11400000, guid: 2d2ff17e94acc6942bfec509e5ab81a0, type: 2}
+  - {fileID: 11400000, guid: 2d2ff17e94acc6942bfec509e5ab81a0, type: 2}
+  - {fileID: 11400000, guid: 3f9287a757feddd40afdc2d2a736966e, type: 2}
+  - {fileID: 11400000, guid: ddf2f560d173b604d987e11106eaa88a, type: 2}
+  modifyPlayerListEvent: {fileID: 11400000, guid: 93027708b00381e4c8af6206586e0151, type: 2}
+  startGameEvent: {fileID: 11400000, guid: 519f06b76615c60438cd28ee0bbcb231, type: 2}
+  changeGameType: {fileID: 11400000, guid: 101534ac72198824da3853617b3d495e, type: 2}
+  changeRoleType: {fileID: 11400000, guid: b1ecc1788d74423418ce39895e1da4d8, type: 2}

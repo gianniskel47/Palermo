@@ -14,17 +14,24 @@ public class CreateGameUI : MonoBehaviour
     [SerializeField] GameObject lobbyUiPanel;
     [SerializeField] GameObject createGamePanel;
     [SerializeField] LobbyUI lobbyUI;
+    [SerializeField] RoleSelectionUI roleSelectionUI;
 
-    private bool isSingleDevice = false;
-    private bool isClasicGame = false;
+    [Header("Broadcasters")]
+    [SerializeField] SO_Event changeGameType;
+    [SerializeField] SO_Event changeRoleType;
+
 
     private void Awake()
     {
-        singleDeviceButton.onClick.AddListener(() => isSingleDevice = true);
-        multipleDevicesButton.onClick.AddListener(() => isSingleDevice = false);
+        singleDeviceButton.onClick.AddListener(() => changeGameType.RaiseEvent(true));
+        multipleDevicesButton.onClick.AddListener(() => changeGameType.RaiseEvent(false));
 
-        clasicGameButton.onClick.AddListener(() => isClasicGame = true);
-        selectRolesButton.onClick.AddListener(() => isClasicGame = false);
+        clasicGameButton.onClick.AddListener(() => changeRoleType.RaiseEvent(true));
+        selectRolesButton.onClick.AddListener(() => 
+        {
+            changeRoleType.RaiseEvent(false);
+            roleSelectionUI.ShowRoleSelection();
+        });
 
         createGameButton.onClick.AddListener(() => CreateGame());
     }

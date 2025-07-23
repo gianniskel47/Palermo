@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08dce5008d30d9418e112b6c688fd9a, type: 3}
+  m_Name: Cult Leader
+  m_EditorClassIdentifier: 
+  roleName: Cult Leader
+  description: "He\u2019s a manipulator who wants to convert others. Each night,
+    he chooses one player to join his cult. If the cult becomes the majority, he
+    wins. The player he selected loses his role and abilities and becomes a cultist."
+  roleSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  role: 14
+  isForSingleDevice: 0
