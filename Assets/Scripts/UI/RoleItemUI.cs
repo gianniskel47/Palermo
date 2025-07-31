@@ -42,4 +42,10 @@ public class RoleItemUI : MonoBehaviour
         countText.text = roleSelection.count.ToString();
         decreaseButton.interactable = roleSelection.count > 0;
     }
+
+    private void OnDisable()
+    {
+        increaseButton.onClick.RemoveAllListeners();
+        decreaseButton.onClick.RemoveAllListeners();
+    }
 }

@@ -7,15 +7,19 @@ public class GameManager : MonoBehaviour
 
     private const string GAME_SCENE = "Game";
 
-    [Header("Role lists")]
-    [SerializeField] List<SO_Role> allRolesList;
-    [SerializeField] List<SO_Role> defaultRolesList;
+    [Header("Default Roles")]
+    [SerializeField] SO_Role hiddenKiller;
+    [SerializeField] SO_Role shownKiller;
+    [SerializeField] SO_Role cop;
+    [SerializeField] SO_Role citizen;
 
     [Header("Listeners")]
     [SerializeField] SO_Event modifyPlayerListEvent;
     [SerializeField] SO_Event startGameEvent;
     [SerializeField] SO_Event changeGameType;
     [SerializeField] SO_Event changeRoleType;
+
+    public List<SO_Role> rolesToUseInGame = new List<SO_Role>(); //PRIVATEEEE
 
     private List<PlayerData> playerDataList = new List<PlayerData>();
     private bool isSingleDevice = false;
@@ -75,21 +79,25 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (isCustomGame)
+        if (!isCustomGame)
         {
-            List<SO_Role> roleList = allRolesList;
-        }
-        else
-        {
-            List<SO_Role> roleList = defaultRolesList;
+            rolesToUseInGame.Clear();
+            rolesToUseInGame = GetDefaultRoleList(GetNumberOfPlayers());
         }
 
         foreach (PlayerData player in playerDataList)
         {
-
+            player.SetupRole(GetRandomRole());
         }
 
         SceneLoader.Instance.LoadSceneByName(GAME_SCENE);
+    }
+
+    public void InitializeRoles(List<SO_Role> selectedRoles)
+    {
+        rolesToUseInGame.Clear();
+
+        rolesToUseInGame = new List<SO_Role>(selectedRoles);
     }
 
     public void AddPlayer(string playerName)
@@ -114,5 +122,35 @@ public class GameManager : MonoBehaviour
     public int GetNumberOfPlayers()
     {
         return playerDataList.Count;
+    }
+
+    public List<PlayerData> GetPlayerDataList()
+    {
+        return playerDataList;
+    }
+
+    private List<SO_Role> GetDefaultRoleList(int playerCount)
+    {
+        List<SO_Role> roles = new List<SO_Role>();
+
+        roles.Add(hiddenKiller);
+        roles.Add(shownKiller);
+        roles.Add(cop);
+
+        int remainingRoles = playerCount - roles.Count;
+        for (int i = 0; i < remainingRoles; i++)
+        {
+            roles.Add(citizen);
+        }
+
+        return roles;
+    }
+
+    public SO_Role GetRandomRole()
+    {
+        SO_Role randomRole = rolesToUseInGame[Random.Range(0, rolesToUseInGame.Count)];
+        rolesToUseInGame.Remove(randomRole);
+
+        return randomRole;
     }
 }

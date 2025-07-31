@@ -10,4 +10,9 @@ public class PlayerData
     {
         PlayerName = name;
     }
+
+    public void SetupRole(SO_Role role)
+    {
+        Role = role;
+    }
 }

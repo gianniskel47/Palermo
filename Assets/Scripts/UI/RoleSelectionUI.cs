@@ -24,7 +24,7 @@ public class RoleSelectionUI : MonoBehaviour
     }
 
    private void SetupRoleList()
-    {
+   {
         foreach (Transform child in roleListParent)
         {
             Destroy(child.gameObject);
@@ -37,7 +37,7 @@ public class RoleSelectionUI : MonoBehaviour
             roleSelections.Add(new RoleSelection(role));
             CreateRoleUIItem(roleSelections.Last());
         }
-    }
+   }
 
     private void CreateRoleUIItem(RoleSelection roleSelection)
     {
@@ -55,7 +55,7 @@ public class RoleSelectionUI : MonoBehaviour
     {
         if (ValidateRoleSelection())
         {
-           // GameManager.Instance.SetCustomRoles(GetSelectedRoles());
+            GameManager.Instance.InitializeRoles(GetSelectedRoles());
             CloseRoleSelection();
         }
     }
@@ -64,7 +64,8 @@ public class RoleSelectionUI : MonoBehaviour
     {
         int totalRoles = roleSelections.Sum(r => r.count);
 
-        return totalRoles >= 5;  //minimum players
+        // same number of roles as players
+        return totalRoles == GameManager.Instance.GetNumberOfPlayers(); 
     }
 
     private List<SO_Role> GetSelectedRoles()
