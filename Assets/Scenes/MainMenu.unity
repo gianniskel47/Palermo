@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.32941177, g: 0.7686275, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 149387490}
   - component: {fileID: 149387489}
   m_Layer: 5
-  m_Name: SelectRolesButton
+  m_Name: CustomGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,7 +1092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -1025.2272}
+  m_AnchoredPosition: {x: 400, y: -1023.6612}
   m_SizeDelta: {x: 800, y: 76.785}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157210189
@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select Roles
+  m_text: Custom Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2193,7 +2193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.34509805, g: 0.8000001, b: 0.35686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2507,7 +2507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -442.01855}
+  m_AnchoredPosition: {x: 400, y: -441.49658}
   m_SizeDelta: {x: 800, y: 236.541}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &615034401
@@ -3127,7 +3127,7 @@ GameObject:
   - component: {fileID: 1075223632}
   - component: {fileID: 1075223633}
   m_Layer: 5
-  m_Name: RolesContainer
+  m_Name: RolesChoiceContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3152,7 +3152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -832.69714}
+  m_AnchoredPosition: {x: 400, y: -831.65314}
   m_SizeDelta: {x: 800, y: 236.541}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1075223633
@@ -3939,12 +3939,14 @@ MonoBehaviour:
   singleDeviceButton: {fileID: 8665706}
   multipleDevicesButton: {fileID: 301611502}
   clasicGameButton: {fileID: 548504603}
-  selectRolesButton: {fileID: 149387489}
+  customGameButton: {fileID: 149387489}
   createGameButton: {fileID: 157210189}
   lobbyUiPanel: {fileID: 205651578}
   createGamePanel: {fileID: 1365215280}
   lobbyUI: {fileID: 2056200976}
   roleSelectionUI: {fileID: 1182467027}
+  selectedColor: {r: 0.34509805, g: 0.8000001, b: 0.35686275, a: 1}
+  unselectedColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
   changeGameType: {fileID: 11400000, guid: 101534ac72198824da3853617b3d495e, type: 2}
   changeRoleType: {fileID: 11400000, guid: b1ecc1788d74423418ce39895e1da4d8, type: 2}
 --- !u!114 &1182467027
@@ -7030,7 +7032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Type
+  m_text: Roles
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

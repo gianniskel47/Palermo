@@ -9,12 +9,16 @@ public class CreateGameUI : MonoBehaviour
     [SerializeField] Button singleDeviceButton;
     [SerializeField] Button multipleDevicesButton;
     [SerializeField] Button clasicGameButton;
-    [SerializeField] Button selectRolesButton;
+    [SerializeField] Button customGameButton;
     [SerializeField] Button createGameButton;
     [SerializeField] GameObject lobbyUiPanel;
     [SerializeField] GameObject createGamePanel;
     [SerializeField] LobbyUI lobbyUI;
     [SerializeField] RoleSelectionUI roleSelectionUI;
+
+    [Header("Config")]
+    [SerializeField] Color selectedColor;
+    [SerializeField] Color unselectedColor;
 
     [Header("Broadcasters")]
     [SerializeField] SO_Event changeGameType;
@@ -23,14 +27,37 @@ public class CreateGameUI : MonoBehaviour
 
     private void Awake()
     {
-        singleDeviceButton.onClick.AddListener(() => changeGameType.RaiseEvent(true));
-        multipleDevicesButton.onClick.AddListener(() => changeGameType.RaiseEvent(false));
+        roleSelectionUI.onRoleConfirmation += CheckIfCreateButtonCanBeClicked;
 
-        clasicGameButton.onClick.AddListener(() => changeRoleType.RaiseEvent(true));
-        selectRolesButton.onClick.AddListener(() => 
+        singleDeviceButton.onClick.AddListener(() =>
+        {
+            changeGameType.RaiseEvent(true);
+            singleDeviceButton.GetComponent<Image>().color = selectedColor;
+            multipleDevicesButton.GetComponent<Image>().color = unselectedColor;
+        });
+
+        multipleDevicesButton.onClick.AddListener(() =>
+        {
+            changeGameType.RaiseEvent(false);
+            singleDeviceButton.GetComponent<Image>().color = unselectedColor;
+            multipleDevicesButton.GetComponent<Image>().color = selectedColor;
+        });
+
+        clasicGameButton.onClick.AddListener(() =>
         {
             changeRoleType.RaiseEvent(false);
+            clasicGameButton.GetComponent<Image>().color = selectedColor;
+            customGameButton.GetComponent<Image>().color = unselectedColor;
+            createGameButton.interactable = true;
+        });
+
+        customGameButton.onClick.AddListener(() => 
+        {
+            changeRoleType.RaiseEvent(true);
             roleSelectionUI.ShowRoleSelection();
+            clasicGameButton.GetComponent<Image>().color = unselectedColor;
+            customGameButton.GetComponent<Image>().color = selectedColor;
+            CheckIfCreateButtonCanBeClicked();
         });
 
         createGameButton.onClick.AddListener(() => CreateGame());
@@ -49,5 +76,17 @@ public class CreateGameUI : MonoBehaviour
         lobbyUI.AddFirstPlayer(playerName);
         lobbyUiPanel.SetActive(true);
         createGamePanel.SetActive(false);
+    }
+
+    private void CheckIfCreateButtonCanBeClicked()
+    {
+        if (roleSelectionUI.GetSelectedRoles().Count > 4)
+        {
+            createGameButton.interactable = true;
+        }
+        else
+        {
+            createGameButton.interactable = false;
+        }
     }
 }

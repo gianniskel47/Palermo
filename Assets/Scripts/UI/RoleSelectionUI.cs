@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class RoleSelectionUI : MonoBehaviour
 {
+    public event Action onRoleConfirmation;
+
     [Header("UI References")]
     [SerializeField] GameObject roleSelectionPanel;
     [SerializeField] Transform roleListParent;
@@ -23,8 +26,8 @@ public class RoleSelectionUI : MonoBehaviour
         backButton.onClick.AddListener(CloseRoleSelection);
     }
 
-   private void SetupRoleList()
-   {
+    private void SetupRoleList()
+    {
         foreach (Transform child in roleListParent)
         {
             Destroy(child.gameObject);
@@ -37,7 +40,7 @@ public class RoleSelectionUI : MonoBehaviour
             roleSelections.Add(new RoleSelection(role));
             CreateRoleUIItem(roleSelections.Last());
         }
-   }
+    }
 
     private void CreateRoleUIItem(RoleSelection roleSelection)
     {
@@ -53,27 +56,17 @@ public class RoleSelectionUI : MonoBehaviour
 
     private void ConfirmRoleSelection()
     {
-        if (ValidateRoleSelection())
-        {
-            GameManager.Instance.InitializeRoles(GetSelectedRoles());
-            CloseRoleSelection();
-        }
+        GameManager.Instance.InitializeRoles(GetSelectedRoles());
+        CloseRoleSelection();
+        onRoleConfirmation?.Invoke();
     }
 
-    private bool ValidateRoleSelection()
-    {
-        int totalRoles = roleSelections.Sum(r => r.count);
-
-        // same number of roles as players
-        return totalRoles == GameManager.Instance.GetNumberOfPlayers(); 
-    }
-
-    private List<SO_Role> GetSelectedRoles()
+    public List<SO_Role> GetSelectedRoles()
     {
         List<SO_Role> selectedRoles = new List<SO_Role>();
         foreach (RoleSelection selection in roleSelections)
         {
-            for (int i = 0; i < selection.count; i++) 
+            for (int i = 0; i < selection.count; i++)
             {
                 selectedRoles.Add(selection.role);
             }

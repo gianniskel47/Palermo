@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public List<SO_Role> rolesToUseInGame = new List<SO_Role>(); //PRIVATEEEE
 
     private List<PlayerData> playerDataList = new List<PlayerData>();
-    private bool isSingleDevice = false;
+    private bool isSingleDevice = true;
     private bool isCustomGame = false;
 
     private void Awake()

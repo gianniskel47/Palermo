@@ -6,6 +6,7 @@ public class PlayerRoleTemplate : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] TextMeshProUGUI playerName;
+    [SerializeField] GameObject roleInfoPanel;
 
     [Header("Config")]
     [SerializeField] float doubleClickTime = 0.3f;
@@ -14,9 +15,12 @@ public class PlayerRoleTemplate : MonoBehaviour
     private SO_Role soRole;
     private float lastClickTime = -1f;
 
+    private GameUI gameUI;
+
     private void Awake()
     {
         playerButton = GetComponent<Button>();    
+        gameUI = GetComponentInParent<GameUI>();
     }
 
     private void Start()
@@ -31,14 +35,19 @@ public class PlayerRoleTemplate : MonoBehaviour
         this.playerName.text = playerName;
     }
 
+    public bool GetIsClicked()
+    {
+        return !playerButton.IsInteractable();
+    }
+
     private void OnButtonClicked()
     {
         float currentTime = Time.time;
 
         if(currentTime - lastClickTime < doubleClickTime)
         {
-            ShowRoleInfo();
             playerButton.interactable = false;
+            ShowRoleInfo();
         }
         else
         {
@@ -48,6 +57,6 @@ public class PlayerRoleTemplate : MonoBehaviour
 
     private void ShowRoleInfo()
     {
-        Debug.Log($"Player {playerName.text} is {soRole.name}");
+        gameUI.ShowRoleInfoPanel(soRole);
     }
 }
